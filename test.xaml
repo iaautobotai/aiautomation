@@ -1,0 +1,73 @@
+<Activity mc:Ignorable="sap sap2010" x:Class="test" VisualBasic.Settings="{x:Null}" sap:VirtualizedContainerService.HintSize="589,500" sap2010:WorkflowViewState.IdRef="test_1" xmlns="http://schemas.microsoft.com/netfx/2009/xaml/activities" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:sap="http://schemas.microsoft.com/netfx/2009/xaml/activities/presentation" xmlns:sap2010="http://schemas.microsoft.com/netfx/2010/xaml/activities/presentation" xmlns:scg="clr-namespace:System.Collections.Generic;assembly=System.Private.CoreLib" xmlns:sco="clr-namespace:System.Collections.ObjectModel;assembly=System.Private.CoreLib" xmlns:ui="http://schemas.uipath.com/workflow/activities" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+  <TextExpression.NamespacesForImplementation>
+    <sco:Collection x:TypeArguments="x:String">
+      <x:String>System.Activities</x:String>
+      <x:String>System.Activities.Statements</x:String>
+      <x:String>System.Activities.Expressions</x:String>
+      <x:String>System.Activities.Validation</x:String>
+      <x:String>System.Activities.XamlIntegration</x:String>
+      <x:String>Microsoft.VisualBasic</x:String>
+      <x:String>Microsoft.VisualBasic.Activities</x:String>
+      <x:String>System</x:String>
+      <x:String>System.Collections</x:String>
+      <x:String>System.Collections.Generic</x:String>
+      <x:String>System.Collections.ObjectModel</x:String>
+      <x:String>System.Data</x:String>
+      <x:String>System.Diagnostics</x:String>
+      <x:String>System.Drawing</x:String>
+      <x:String>System.IO</x:String>
+      <x:String>System.Linq</x:String>
+      <x:String>System.Net.Mail</x:String>
+      <x:String>System.Xml</x:String>
+      <x:String>System.Xml.Linq</x:String>
+      <x:String>UiPath.Core</x:String>
+      <x:String>UiPath.Core.Activities</x:String>
+      <x:String>System.Windows.Markup</x:String>
+      <x:String>GlobalVariablesNamespace</x:String>
+      <x:String>GlobalConstantsNamespace</x:String>
+      <x:String>System.Runtime.Serialization</x:String>
+    </sco:Collection>
+  </TextExpression.NamespacesForImplementation>
+  <TextExpression.ReferencesForImplementation>
+    <sco:Collection x:TypeArguments="AssemblyReference">
+      <AssemblyReference>Microsoft.VisualBasic</AssemblyReference>
+      <AssemblyReference>mscorlib</AssemblyReference>
+      <AssemblyReference>System</AssemblyReference>
+      <AssemblyReference>System.Activities</AssemblyReference>
+      <AssemblyReference>System.ComponentModel.TypeConverter</AssemblyReference>
+      <AssemblyReference>System.Core</AssemblyReference>
+      <AssemblyReference>System.Data</AssemblyReference>
+      <AssemblyReference>System.Data.Common</AssemblyReference>
+      <AssemblyReference>System.Data.DataSetExtensions</AssemblyReference>
+      <AssemblyReference>System.Drawing</AssemblyReference>
+      <AssemblyReference>System.Drawing.Common</AssemblyReference>
+      <AssemblyReference>System.Drawing.Primitives</AssemblyReference>
+      <AssemblyReference>System.Linq</AssemblyReference>
+      <AssemblyReference>System.Net.Mail</AssemblyReference>
+      <AssemblyReference>System.ObjectModel</AssemblyReference>
+      <AssemblyReference>System.Private.CoreLib</AssemblyReference>
+      <AssemblyReference>System.Xaml</AssemblyReference>
+      <AssemblyReference>System.Xml</AssemblyReference>
+      <AssemblyReference>System.Xml.Linq</AssemblyReference>
+      <AssemblyReference>UiPath.System.Activities</AssemblyReference>
+      <AssemblyReference>UiPath.UiAutomation.Activities</AssemblyReference>
+      <AssemblyReference>UiPath.Studio.Constants</AssemblyReference>
+      <AssemblyReference>System.Private.ServiceModel</AssemblyReference>
+      <AssemblyReference>System.Runtime.Serialization.Formatters</AssemblyReference>
+      <AssemblyReference>System.Private.DataContractSerialization</AssemblyReference>
+      <AssemblyReference>System.Runtime.Serialization.Primitives</AssemblyReference>
+    </sco:Collection>
+  </TextExpression.ReferencesForImplementation>
+  <Sequence DisplayName="test" sap:VirtualizedContainerService.HintSize="416,276" sap2010:WorkflowViewState.IdRef="Sequence_1">
+    <sap:WorkflowViewStateService.ViewState>
+      <scg:Dictionary x:TypeArguments="x:String, x:Object">
+        <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+      </scg:Dictionary>
+    </sap:WorkflowViewStateService.ViewState>
+    <ui:InvokeCode ContinueOnError="{x:Null}" Code="Sub DeleteEmptySheets(filePath As String)&#xD;&#xA;    Dim excelApp As Object = CreateObject(&quot;Excel.Application&quot;) ' Late binding&#xD;&#xA;    Dim workbook As Object = excelApp.Workbooks.Open(filePath)&#xD;&#xA;&#xD;&#xA;    Try&#xD;&#xA;        If CInt(workbook.Sheets.Count) &gt; 1 Then&#xD;&#xA;            ' Loop through all sheets except the first (Sheet1)&#xD;&#xA;            For i = 2 To CInt(workbook.Sheets.Count)&#xD;&#xA;                If IsEmptySheet(CType(workbook.Sheets(i), Excel.Worksheet)) Then&#xD;&#xA;                    ' Delete the empty sheet&#xD;&#xA;                    CType(workbook.Sheets(i), Excel.Worksheet).Delete()&#xD;&#xA;                    i -= 1 ' Decrement loop counter to avoid skipping sheets&#xD;&#xA;                End If&#xD;&#xA;            Next&#xD;&#xA;        End If&#xD;&#xA;&#xD;&#xA;        ' Save the modified workbook&#xD;&#xA;        workbook.Save()&#xD;&#xA;    Catch ex As Exception&#xD;&#xA;        Console.WriteLine(&quot;Error occurred: &quot; &amp; ex.Message)&#xD;&#xA;    Finally&#xD;&#xA;        ' Release COM objects (recommended)&#xD;&#xA;        ReleaseComObject(excelApp)&#xD;&#xA;        workbook = Nothing ' Explicitly release workbook reference (optional)&#xD;&#xA;    End Try&#xD;&#xA;&#xD;&#xA;    ' Close the workbook and quit Excel&#xD;&#xA;    workbook.Close(SaveChanges:=False)&#xD;&#xA;    excelApp.Quit()&#xD;&#xA;End Sub&#xD;&#xA;&#xD;&#xA;Function IsEmptySheet(sheet As Excel.Worksheet) As Boolean&#xD;&#xA;    ' Check if all used cells are empty&#xD;&#xA;    Dim usedRange As Excel.Range = sheet.UsedRange&#xD;&#xA;    Return IsNothing(usedRange.Find(&quot;*&quot;, LookIn:=Excel.XlFindLookAt.xlValues))&#xD;&#xA;End Function&#xD;&#xA;&#xD;&#xA;Sub ReleaseComObject(obj As Object)&#xD;&#xA;    If obj IsNot Nothing Then&#xD;&#xA;        System.Runtime.InteropServices.Marshal.ReleaseComObject(obj)&#xD;&#xA;        GC.Collect()&#xD;&#xA;    End If&#xD;&#xA;End Sub&#xD;&#xA;" DisplayName="Invoke Code" sap:VirtualizedContainerService.HintSize="354,188" sap2010:WorkflowViewState.IdRef="InvokeCode_1">
+      <ui:InvokeCode.Arguments>
+        <scg:Dictionary x:TypeArguments="x:String, Argument" />
+      </ui:InvokeCode.Arguments>
+    </ui:InvokeCode>
+  </Sequence>
+</Activity>

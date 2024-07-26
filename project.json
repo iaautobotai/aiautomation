@@ -1,0 +1,68 @@
+{
+  "name": "pdf automation process",
+  "projectId": "bad176e8-ad1e-408b-be1f-2782003d9016",
+  "description": "Blank Process",
+  "main": "Main.xaml",
+  "dependencies": {
+    "Abbyy.CloudSdk.V2.Client": "[1.0.6]",
+    "UiPath.DocumentUnderstanding.Activities": "[2.10.0-preview]",
+    "UiPath.DocumentUnderstanding.ML.Activities": "[1.29.0-preview]",
+    "UiPath.DocumentUnderstanding.OCR.LocalServer": "[1.5.1]",
+    "UiPath.Excel.Activities": "[2.23.4]",
+    "UiPath.IntegrationService.Activities": "[1.6.0]",
+    "UiPath.OmniPage.Activities": "[1.20.0-preview]",
+    "UiPath.PDF.Activities": "[3.20.0-preview]",
+    "UiPath.System.Activities": "[24.10.4]",
+    "UiPath.Testing.Activities": "[24.10.1]",
+    "UiPath.UIAutomation.Activities": "[24.10.2]"
+  },
+  "webServices": [],
+  "entitiesStores": [],
+  "schemaVersion": "4.0",
+  "studioVersion": "24.10.1.0",
+  "projectVersion": "1.0.0",
+  "runtimeOptions": {
+    "autoDispose": false,
+    "netFrameworkLazyLoading": false,
+    "isPausable": true,
+    "isAttended": false,
+    "requiresUserInteraction": true,
+    "supportsPersistence": false,
+    "workflowSerialization": "DataContract",
+    "excludedLoggedData": [
+      "Private:*",
+      "*password*"
+    ],
+    "executionType": "Workflow",
+    "readyForPiP": false,
+    "startsInPiP": false,
+    "mustRestoreAllDependencies": true,
+    "pipType": "ChildSession"
+  },
+  "designOptions": {
+    "projectProfile": "Developement",
+    "outputType": "Process",
+    "libraryOptions": {
+      "includeOriginalXaml": false,
+      "privateWorkflows": []
+    },
+    "processOptions": {
+      "ignoredFiles": []
+    },
+    "fileInfoCollection": [],
+    "saveToCloud": false
+  },
+  "expressionLanguage": "VisualBasic",
+  "entryPoints": [
+    {
+      "filePath": "Main.xaml",
+      "uniqueId": "0dad6c1f-89ab-40c9-9e1d-675d1efd2472",
+      "input": [],
+      "output": []
+    }
+  ],
+  "isTemplate": false,
+  "templateProjectData": {},
+  "publishData": {},
+  "targetFramework": "Windows"
+}
